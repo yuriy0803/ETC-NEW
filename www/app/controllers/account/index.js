@@ -5,8 +5,7 @@ export default Ember.Controller.extend({
   netstats: Ember.computed.reads('applicationController'),
   stats: Ember.computed.reads('applicationController.model.stats'),
   config: Ember.computed.reads('applicationController.config'),
-  hashrate: Ember.computed.reads('applicationController.hashrate'),
-
+  
   chartOptions: Ember.computed("model.hashrate", {
         get() {
             var e = this,
