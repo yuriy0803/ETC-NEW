@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   netstats: Ember.computed.reads('applicationController'),
   stats: Ember.computed.reads('applicationController.model.stats'),
   config: Ember.computed.reads('applicationController.config'),
+  hashrate: Ember.computed.reads('applicationController.hashrate'),
   
   chartOptions: Ember.computed("model.hashrate", {
         get() {
@@ -401,5 +402,134 @@ export default Ember.Controller.extend({
                 };
             return a;
         }
-    })
+    }),
+  
+  
+   netHashrate: Ember.computed({
+      get() {
+        return this.get('hashrate');
+        }
+        }),
+ /* percStaleShare: Ember.computed('model', {
+    get() {
+      var percent = this.get('model.stale_shares') / this.get('model.valid_shares') * 100;
+      if (!percent) {
+        return this.get('model.stale_shares');
+      }
+      return percent.toFixed(2);;
+    }
+  }), */
+  earnPerHour: Ember.computed('model', {
+    get() {
+      return 1 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
+      this.getWithDefault('model.hashrate') / this.get('hashrate');
+    }
+  }),
+  earnPerDay: Ember.computed('model', {
+    get() {
+      return 24 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
+      this.getWithDefault('model.hashrate') / this.get('hashrate');
+    }
+  }),
+  earnPerWeek: Ember.computed('model', {
+    get() {
+      return 168 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
+      this.getWithDefault('model.hashrate') / this.get('hashrate');
+    }
+  }),
+  earnPerMonth: Ember.computed('model', {
+    get() {
+      return 672 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
+      this.getWithDefault('model.hashrate') / this.get('hashrate');
+    }
+  }),
+  
+  usdPerMonth: Ember.computed('model', {
+    get() {
+       var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=ETC&tsyms=USD", false);
+  xmlhttp.send();
+  var obj = JSON.parse(xmlhttp.responseText);
+      var value = 672 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
+      this.getWithDefault('model.hashrate') / this.get('hashrate') * obj["USD"];
+      return value.toFixed(3);
+    }
+  }),
+  usdPerWeek: Ember.computed('model', {
+    get() {
+       var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=ETC&tsyms=USD", false);
+  xmlhttp.send();
+  var obj = JSON.parse(xmlhttp.responseText);
+      var value = 168 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
+      this.getWithDefault('model.hashrate') / this.get('hashrate') * obj["USD"];
+      return value.toFixed(3);
+    }
+  }),
+  usdPerDay: Ember.computed('model', {
+    get() {
+       var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=ETC&tsyms=USD", false);
+  xmlhttp.send();
+  var obj = JSON.parse(xmlhttp.responseText);
+      var value = 24 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
+      this.getWithDefault('model.hashrate') / this.get('hashrate') * obj["USD"];
+      return value.toFixed(3);
+    }
+  }),
+  
+  usdPerHour: Ember.computed('model', {
+    get() {
+       var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=ETC&tsyms=USD", false);
+  xmlhttp.send();
+  var obj = JSON.parse(xmlhttp.responseText);
+      var value = 1 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
+      this.getWithDefault('model.hashrate') / this.get('hashrate') * obj["USD"];
+      return value.toFixed(3);
+    }
+  }),
+  
+  btcPerMonth: Ember.computed('model', {
+    get() {
+       var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD", false);
+  xmlhttp.send();
+  var obj = JSON.parse(xmlhttp.responseText);
+       var value = this.get('usdPerMonth') / obj["USD"];
+      return value.toFixed(4);
+    }
+  }),
+  btcPerWeek: Ember.computed('model', {
+    get() {
+       var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD", false);
+  xmlhttp.send();
+  var obj = JSON.parse(xmlhttp.responseText);
+      var value = this.get('usdPerWeek') / obj["USD"];
+      return value.toFixed(4);
+    }
+  }),
+  btcPerDay: Ember.computed('model', {
+    get() {
+       var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD", false);
+  xmlhttp.send();
+  var obj = JSON.parse(xmlhttp.responseText);
+     var value = this.get('usdPerDay') / obj["USD"];
+      return value.toFixed(4);
+    }
+  }),
+  
+  btcPerHour: Ember.computed('model', {
+    get() {
+       var xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD", false);
+  xmlhttp.send();
+  var obj = JSON.parse(xmlhttp.responseText);
+      var value = this.get('usdPerHour') / obj["USD"];
+      return value.toFixed(4);
+    }
+  })
+  
 });
