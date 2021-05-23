@@ -13,7 +13,7 @@
     <tbody>
       {{#each model.candidates as |block|}}
       <tr>
-        <td><a href="https://explorer.ellaism.org/block/{{block.height}}" rel="nofollow" target="_blank">{{format-number block.height}}</a></td>
+        <td><a href="https://blockscout.com/etc/mainnet/blocks/{{block.height}}" rel="nofollow" target="_blank">{{format-number block.height}}</a></td>
         <td>{{#link-to 'account' block.login class='hash'}}{{block.login}}{{/link-to}}</td>
 		<td>{{format-date-locale block.timestamp}}</td>
         <td>

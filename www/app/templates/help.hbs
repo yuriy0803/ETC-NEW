@@ -12,17 +12,17 @@
       <p class="lead">In order to mine etchash you need   
         <a href="https://github.com/Lolliedieb/lolMiner-releases/releases" rel="nofollow" target="_blank">lolMiner</a> v1.12+
       </p>
-      <p><code>./lolMiner --pool {{config.StratumHost}}:{{config.StratumPort}} --user [YOUR_ETC_ADDRESS] -c ETC {{if (equals config.Network 'mordor') "--ecip1099-activation 84"}} --ethstratum=ETHPROXY</code></p>
+      <p><code>./lolMiner --pool {{config.StratumHost1}}:{{config.StratumPort1}} --user [YOUR_ETC_ADDRESS] -c ETC {{if (equals config.Network 'mordor') "--ecip1099-activation 84"}} --ethstratum=ETHPROXY</code></p>
       <dl class="dl-horizontal">
         <dt>YOUR_ETC_ADDRESS</dt>
         <dd>This is your address for payouts, generate one with core-geth, or mine directly to exchange like
           <a href="http://bittrex.com" rel="nofollow" target="_blank">Bittrex</a>.<br/>
-          <strong>Example:</strong> <code>0xd92fa5a9732a0aec36dc8d5a6a1305dc2d3e09e6</code>.
+          <strong>Example:</strong> <code>0xdb454ce9ca12f5d2d0e1568b9817097798460b1c</code>.
         </dd>
       </dl>
       <p>
         <strong>Full example:</strong>
-        <code>./lolMiner --pool {{config.StratumHost}}:{{config.StratumPort}} --user 0xd92fa5a9732a0aec36dc8d5a6a1305dc2d3e09e6 -c ETC {{if (equals config.Network 'mordor') "--ecip1099-activation 84"}} --ethstratum=ETHPROXY</code>.<br/>
+        <code>./lolMiner --pool {{config.StratumHost1}}:{{config.StratumPort1}} --user 0xdb454ce9ca12f5d2d0e1568b9817097798460b1c -c ETC {{if (equals config.Network 'mordor') "--ecip1099-activation 84"}} --ethstratum=ETHPROXY</code>.<br/>
       </p>
     </div>
 
@@ -36,12 +36,12 @@
       <h4>example config</h4>
       <pre>
 ; Address to send funds to. Change this address to yours!
-wallet = 0xd92fa5a9732a0aec36dc8d5a6a1305dc2d3e09e6
+wallet = 0xdb454ce9ca12f5d2d0e1568b9817097798460b1c
 
 ; Coin to mine.
 coin = ETC
 
-pool1={{config.StratumHost}}:{{config.StratumPort}}
+pool1={{config.StratumHost1}}:{{config.StratumPort1}}
       </pre>
     </div>
   </div>

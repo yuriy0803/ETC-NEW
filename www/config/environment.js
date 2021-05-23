@@ -24,6 +24,8 @@ module.exports = function(environment) {
         // Stratum mining endpoint
         StratumHost: 'etc.pool-node.com',
         StratumPort: 8008,
+        StratumHost1: 'pplns-etc.pool-node.com',
+        StratumPort1: 8008,
   
         // The ETC network used (classic, mordor)
         Network: 'classic',
