@@ -15,16 +15,16 @@ module.exports = function(environment) {
   
       APP: {
         // API host and port
-        ApiUrl: '//192.168.178.29//',
+        ApiUrl: '//etc.pool-node.com//',
   
         // HTTP mining endpoint
-        HttpHost: 'http://192.168.178.29',
+        HttpHost: 'http://etc.pool-node.com',
         HttpPort: 8888,
   
         // Stratum mining endpoint
         StratumHost: 'etc.pool-node.com',
-        StratumPort: 8008,
-        StratumHost1: 'pplns-etc.pool-node.com',
+        StratumPort: 4444,
+        StratumHost1: 'etc.pool-node.com',
         StratumPort1: 8008,
   
         // The ETC network used (classic, mordor)
@@ -39,6 +39,7 @@ module.exports = function(environment) {
       BlockReward: 3.2,
       Blockpreis: 3200000000,
       Unit: 'ETC',
+      Currency: 'USD'
     }
   };
   

@@ -19,6 +19,10 @@
         <div><i class="fa fa-users"></i> Miners Online: <span id="poolHashrate">{{format-number stats.model.minersTotal}}</span></div>
         <div><i class="fa fa-tachometer"></i> Pool Hash Rate: <span id="poolHashrate">{{format-hashrate stats.model.hashrate}}</span></div>
         <div><i class="fa fa-money"></i> Pool Fee: <span id="poolFee" class="label label-success">{{config.PoolFee}}</span></div>
+        <div><i class='fab fa-ethereum' style='font-size:20px'></i> Block Reward: {{config.BlockReward}} {{#if (eq config.Currency 'USD') }} {{ format-ethusd config.Blockpreis model.exchangedata.current_price }}
+                        {{else}}
+                        {{ format-ethinr config.Blockpreis model.exchangedata.price_inr }}
+                        {{/if}} </div>
         {{#if stats.model.stats.lastBlockFound}}
           <div><i class="fa fa-clock-o"></i> Last Block Found: <span>{{format-relative (seconds-to-ms stats.model.stats.lastBlockFound)}}</span></div>
         {{/if}}
@@ -70,6 +74,16 @@
               <a href="#/help" class="ul-link">
                 <span class="ul ul-danger">stratum</span><br />
                 <code>{{config.StratumHost1}}:{{config.StratumPort1}}</code>
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="lead text-center">
+              <a href="#/help" class="ul-link">
+                <span class="ul ul-danger">TLS/SSL</span><br />
+                <code>{{config.StratumHost}}:{{config.StratumPort}}</code>
               </a>
             </p>
           </div>
