@@ -1,0 +1,42 @@
+{
+  "threads": 2,
+  "coin": "pplns",
+  "name": "etc-pplns",
+  "pplns": 9000,
+  "network": "classic",
+  "coin-name":"etc",
+
+
+	"payouts": {
+		"enabled": false,
+		"requirePeers": 25,
+		"interval": "20m",
+		"daemon": "http://127.0.0.1:8545",
+		"timeout": "10s",
+		"address": "0xdb454ce9ca12f5d2d0e1568b9817097798460b1c",
+		"gas": "21000",
+		"gasPrice": "50000000000",
+		"autoGas": true,
+		"threshold": 500000000,
+		"bgsave": false,
+		"concurrentTx": 10
+	},
+
+  "upstreamCheckInterval": "5s",
+
+  "upstream": [
+    {
+      "name": "main",
+      "url": "http://127.0.0.1:8545",
+      "timeout": "10s"
+    }
+  ],
+
+  "redis": {
+    "endpoint": "127.0.0.1:6379",
+    "poolSize": 10,
+    "database": 0,
+    "password": ""
+  }
+
+}

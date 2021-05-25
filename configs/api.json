@@ -1,0 +1,54 @@
+{
+  "threads": 2,
+  "coin": "pplns",
+  "name": "etc-pplns",
+  "pplns": 9000,
+  "network": "classic",
+  "coin-name":"etc",
+
+	"api": {
+		"enabled": true,
+		"purgeOnly": false,
+		"purgeInterval": "10m",
+		"listen": "0.0.0.0:8080",
+		"statsCollectInterval": "5s",
+		"hashrateWindow": "30m",
+		"hashrateLargeWindow": "3h",
+		"luckWindow": [64, 128, 256],
+		"payments": 30,
+		"blocks": 50,
+		"poolCharts":"*/20 * * * *",
+		"poolChartsNum":74,
+		"minerCharts":"*/20 * * * *",
+    "minerChartsNum":74,
+    "netCharts":"*/20 * * * *",
+    "netChartsNum":74,
+    "shareCharts":"*/20 * * * *",
+    "shareChartsNum":74
+	},
+
+  "upstreamCheckInterval": "5s",
+
+  "upstream": [
+    {
+      "name": "main",
+      "url": "http://127.0.0.1:8545",
+      "timeout": "10s"
+    }
+  ],
+
+  "redis": {
+    "endpoint": "127.0.0.1:6379",
+    "poolSize": 10,
+    "database": 0,
+    "password": ""
+  },
+  
+         "exchange": {
+                "enabled": true,
+                "url": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum-classic",
+                "timeout": "50s",
+                "refreshInterval": "900s"
+    }
+
+}

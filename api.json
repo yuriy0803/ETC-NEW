@@ -2,7 +2,7 @@
 	"threads": 2,
 	"coin": "etc",
 	"name": "main",
-    "pplns": 9000,
+        "pplns": 9000,
 	"network": "mordor",
 	"coin-name":"etc",
 
@@ -75,12 +75,12 @@
 	"upstream": [
 		{
 			"name": "main",
-			"url": "http://192.168.178.40:8545",
+			"url": "http://127.0.0.1:8545",
 			"timeout": "10s"
 		},
 		{
 			"name": "backup",
-			"url": "http://192.168.178.40:8545",
+			"url": "http://127.0.0.1:8545",
 			"timeout": "10s"
 		}
 	],
@@ -101,13 +101,13 @@
 
 	"unlocker": {
 		"enabled": true,
-		"poolFee": 1.0,
+		"poolFee": 0.1,
 		"poolFeeAddress": "",
 		"depth": 120,
 		"immatureDepth": 20,
 		"keepTxFees": false,
 		"interval": "10m",
-		"daemon": "http://192.168.178.40:8545",
+		"daemon": "http://127.0.0.1:8545",
 		"timeout": "10s"
 	},
 
@@ -115,7 +115,7 @@
 		"enabled": false,
 		"requirePeers": 25,
 		"interval": "20m",
-		"daemon": "http://192.168.178.40:8545",
+		"daemon": "http://127.0.0.1:8545",
 		"timeout": "10s",
 		"address": "0x879410E4E8AC87b2AfD9794Df42D23Ad8FBbD0eF",
 		"gas": "21000",

@@ -1,0 +1,39 @@
+{
+  "threads": 2,
+  "coin": "pplns",
+  "name": "etc-pplns",
+  "pplns": 9000,
+  "network": "classic",
+  "coin-name":"etc",
+
+	"unlocker": {
+		"enabled": true,
+		"poolFee": 0.1,
+		"poolFeeAddress": "",
+		"depth": 120,
+		"immatureDepth": 20,
+		"keepTxFees": false,
+		"interval": "10m",
+		"daemon": "http://127.0.0.1:8545",
+		"timeout": "10s"
+	},
+
+
+  "upstreamCheckInterval": "5s",
+
+  "upstream": [
+    {
+      "name": "main",
+      "url": "http://127.0.0.1:8545",
+      "timeout": "10s"
+    }
+  ],
+
+  "redis": {
+    "endpoint": "127.0.0.1:6379",
+    "poolSize": 10,
+    "database": 0,
+    "password": ""
+  }
+
+}
