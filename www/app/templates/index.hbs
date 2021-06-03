@@ -15,28 +15,193 @@
           <span class="label label-success">PPLNS</span> Stable and profitable pool with regular payouts.
         </div>
       </div>
-      <div class="col-md-3 stats">
-        <div><i class="fa fa-users"></i> Miners Online: <span id="poolHashrate">{{format-number stats.model.minersTotal}}</span></div>
-        <div><i class="fa fa-tachometer"></i> Pool Hash Rate: <span id="poolHashrate">{{format-hashrate stats.model.hashrate}}</span></div>
-        <div><i class="fa fa-money"></i> Pool Fee: <span id="poolFee" class="label label-success">{{config.PoolFee}}</span></div>
-        <div><i class='fab fa-ethereum' style='font-size:20px'></i> Block Reward: {{config.BlockReward}} {{#if (eq config.Currency 'USD') }} {{ format-ethusd config.Blockpreis model.exchangedata.current_price }}
-                        {{else}}
-                        {{ format-ethinr config.Blockpreis model.exchangedata.price_inr }}
-                        {{/if}} </div>
-        {{#if stats.model.stats.lastBlockFound}}
-          <div><i class="fa fa-clock-o"></i> Last Block Found: <span>{{format-relative (seconds-to-ms stats.model.stats.lastBlockFound)}}</span></div>
-        {{/if}}
-      </div>
-      <div class="col-md-4 stats">
-        <div><i class="fa fa-unlock-alt"></i> Network Difficulty: <span>{{with-metric-prefix stats.difficulty}}</span></div>
-        <div><i class="fa fa-tachometer"></i> Network Hash Rate: <span>{{format-hashrate stats.hashrate}}</span></div>
-        <div><i class="fa fa-bars"></i> Blockchain Height: <span>{{format-number stats.height}}</span></div>
-        <div><i class="fa fa-clock-o"></i> Current Round Variance: <span>{{format-number stats.roundVariance style='percent'}}</span></div>
-        <div><i class="fa fa-credit-card-alt fa-fw"></i> Current price: <span>$ {{model.exchangedata.current_price}}</span></div>
-      </div>
+
     </div>
   </div>
 </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-cube"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.blockheight"}}</h3>
+            <div>
+              <span>{{format-number stats.height}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-hourglass-half"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.blocktime"}}</h3>
+            <div>
+              <span>{{format-number stats.blockTime}} s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-tachometer"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.network_hashrate"}}</h3>
+            <div>
+              <span>{{format-hashrate stats.hashrate}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-puzzle-piece"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.difficulty"}}</h3>
+            <div>
+              <span>{{with-metric-prefix stats.difficulty}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-users"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.miners"}}</h3>
+            <div>
+              <span>{{format-number stats.model.minersTotal}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-clock-o"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.lastfound"}}</h3>
+            <div>
+              {{#if stats.model.stats.lastBlockFound}}
+              <span>{{seconds-to-rel stats.model.stats.lastBlockFound}}</span>
+              {{else}}
+              <span>{{t "home.no_block_found"}}</span>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-tachometer"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.pool_hashrate"}}</h3>
+            <div>
+              <span>{{format-hashrate stats.model.hashrate}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-percent"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.round_luck"}}</h3>
+            <div>
+              <span>{{format-number stats.roundVariance style='percent'}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa fa-money"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.pool_fee"}}</h3>
+            <div>
+              <span>{{config.PoolFee}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-cube"></i>
+          </div>
+          <div class="number">
+            <h3>{{t "home.blockreward"}}</h3>
+            <div>
+              <span>{{config.BlockReward}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa-cube"></i>
+          </div>
+          <div class="number">
+            <h3>Block Reward Price</h3>
+            <div>
+              <span>{{#if (eq config.Currency 'USD') }} {{ format-ethusd config.Blockpreis model.exchangedata.current_price }}
+                        {{else}}
+                        {{ format-ethinr config.Blockpreis model.exchangedata.price_inr }}
+                        {{/if}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 stat-holder">
+        <div class="display">
+          <div class="icon">
+            <i class="fa fa fa-money"></i>
+          </div>
+          <div class="number">
+            <h3>Current price</h3>
+            <div>
+              <span>${{model.exchangedata.current_price}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+       </div>
+        </div>
+
+
 
 <div class="container">
   <div class="stats">
