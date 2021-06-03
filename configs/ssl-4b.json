@@ -2,7 +2,7 @@
 	"threads": 2,
 	"coin": "pplns",
 	"name": "etc-pplns",
-        "pplns": 9000,
+        "pplns": 250000,
 	"network": "classic",
 	"coin-name":"etc",
 
