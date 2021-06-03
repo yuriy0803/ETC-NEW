@@ -27,6 +27,16 @@ export default Ember.Controller.extend({
         }
     }),
     
+    numroundShare: Ember.computed('stats', 'model', {
+    get() {
+      var count = this.get('model.roundShares') / 5;
+      if (!count) {
+        return 0;
+      }
+      return count;
+    }
+  }),
+    
     earnPerDay: Ember.computed('model', {
         get() {
             return 24 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
