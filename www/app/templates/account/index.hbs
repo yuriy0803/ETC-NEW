@@ -4,36 +4,20 @@
       <table class="table table-condensed table-striped">
         <thead >
         <tr class="active">
-          <th>Time</th>
-          <th>ETC</th>
-          <th>BTC</th>
-          <th>USD</th>
+          <th></th>
+          <th>Hour</th>
+          <th>Day</th>
+          <th>Week</th>
+          <th>Month</th>
         </tr>
       </thead>
         <tbody>
         <tr>
-        <td><span>Hour</span></td>
-        <td><span>{{format-number earnPerHour}}</span></td>
-          <td>{{btcPerHour}}</td>
-          <td>{{usdPerHour}}</td>
-        </tr>
-        <tr>
-        <td><span>Day</span></td>
-        <td><span>{{format-number earnPerDay}}</span></td>
-          <td>{{btcPerDay}}</td>
-          <td>{{usdPerDay}}</td>
-        </tr>
-        <tr>
-        <td><span>Week</span></td>
-        <td>{{format-number earnPerWeek}}</td>
-        <td>{{btcPerWeek}}</td>
-        <td>{{usdPerWeek}}</td>
-        </tr>
-        <tr>
-        <td><span>Month</span></td>
-        <td>{{format-number earnPerMonth}}</td>
-        <td>{{btcPerMonth}}</td>
-        <td>{{usdPerMonth}}</td>
+        <td><span>Time</span></td>
+        <td><span>{{format-number earnPerHour maximumFractionDigits='8'}} ETC</span></td>
+        <td><span>{{format-number earnPerDay maximumFractionDigits='8'}} ETC</span></td>
+        <td><span>{{format-number earnPerWeek maximumFractionDigits='8'}} ETC</span></td>
+        <td><span>{{format-number earnPerMonth maximumFractionDigits='8'}} ETC</span></td>
         </tr>
         </tbody>
        </table>

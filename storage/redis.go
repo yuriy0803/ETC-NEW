@@ -541,6 +541,7 @@ func (r *RedisClient) WriteBlock(login, id string, params []string, diff, roundD
 		r.writeShare(tx, ms, ts, login, id, diff, window)
 		tx.HSet(r.formatKey("stats"), "lastBlockFound", strconv.FormatInt(ts, 10))
 		tx.HDel(r.formatKey("stats"), "roundShares")
+    tx.HSet(r.formatKey("miners", login), "roundShares", strconv.FormatInt(0, 10))
 		tx.ZIncrBy(r.formatKey("finders"), 1, login)
 		tx.HIncrBy(r.formatKey("miners", login), "blocksFound", 1)
 		tx.HGetAllMap(r.formatKey("shares", "roundCurrent"))
@@ -587,11 +588,10 @@ func (r *RedisClient) WriteBlock(login, id string, params []string, diff, roundD
 }
 
 func (r *RedisClient) writeShare(tx *redis.Multi, ms, ts int64, login, id string, diff int64, expire time.Duration) {
-	times := int(diff / 1000000000)
-	for i := 0; i < times; i++ {
-		tx.LPush(r.formatKey("lastshares"), login)
-	}
+
+	tx.LPush(r.formatKey("lastshares"), login)
 	tx.LTrim(r.formatKey("lastshares"), 0, r.pplns)
+  tx.HIncrBy(r.formatKey("miners", login), "roundShares", diff)
 	tx.HIncrBy(r.formatKey("shares", "roundCurrent"), login, diff)
 	tx.ZAdd(r.formatKey("hashrate"), redis.Z{Score: float64(ts), Member: join(diff, login, id, ms)})
 	tx.ZAdd(r.formatKey("hashrate", login), redis.Z{Score: float64(ts), Member: join(diff, id, ms)})

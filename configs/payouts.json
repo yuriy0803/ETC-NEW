@@ -1,14 +1,14 @@
 {
   "threads": 2,
-  "coin": "pplns",
-  "name": "etc-pplns",
-  "pplns": 9000,
-  "network": "classic",
+  "coin": "etc",
+  "name": "etcsolo",
+  "pplns": 0,
   "coin-name":"etc",
+  "network": "classic",
 
 
 	"payouts": {
-		"enabled": false,
+		"enabled": true,
 		"requirePeers": 25,
 		"interval": "20m",
 		"daemon": "http://127.0.0.1:8545",
@@ -17,7 +17,7 @@
 		"gas": "21000",
 		"gasPrice": "50000000000",
 		"autoGas": true,
-		"threshold": 500000000,
+		"threshold": 50000000,
 		"bgsave": false,
 		"concurrentTx": 10
 	},
@@ -35,7 +35,7 @@
   "redis": {
     "endpoint": "127.0.0.1:6379",
     "poolSize": 10,
-    "database": 0,
+    "database": 3,
     "password": ""
   }
 

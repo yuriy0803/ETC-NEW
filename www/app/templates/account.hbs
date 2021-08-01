@@ -20,27 +20,30 @@
         <div style="display: block;"><i class="fa fa-money"></i> Last 24h Reward: <span>{{format-balance model.24hreward}}</span></div>
       </div>
       <div class="col-md-4 stats">
-        {{#if model.stats.lastShare}}
-        <div style="display: block;"><i class="fa fa-clock-o"></i>
-          Last Share Submitted: <span>{{format-relative (seconds-to-ms (string-to-int model.stats.lastShare))}}</span>
+              <div style="display: block;">
+          <i class="fa fa-clock-o"></i>
+          Epoch Switch: <span>{{format-relative applicationController.nextEpoch units="hour"}}</span>
         </div>
-        {{/if}}
-        <div style="display: block;"><i class="fa fa-gears"></i> Workers Online: <span>{{format-number model.workersOnline}}</span></div>
+      
+        <div style="display: block;"><i class="fa fa-gears"></i> Epoch: <span>{{format-number epoch}}</span></div>
+        <div style="display: block;"><i class="fa fa-gears"></i> DAG Size: <span>{{format-number dag}} GB</span></div>
         <div style="display: block;"><i class="fa fa-tachometer"></i> Hashrate (30m): <span>{{format-hashrate model.currentHashrate}}</span></div>
         <div style="display: block;"><i class="fa fa-tachometer"></i> Hashrate (3h): <span>{{format-hashrate model.hashrate}}</span></div>
-        <div style="display: block;"><i class="fa fa-calculator"></i> Earnings per day (3h avg): <span>{{format-number earnPerDay}} {{config.Unit}}</span></div>
+        
       </div>
       <div class="col-md-4 stats">
         <div style="display: block;"><i class="fa fa-tachometer"></i> Blocks Found: <span>{{format-number model.stats.blocksFound fallback='0'}}</span></div>
         <div style="display: block;"><i class="fa fa-paper-plane-o"></i> Total Payments: <span>{{format-number model.paymentsTotal}}</span></div>
         <div style="display: block;">
-          <i class="fa fa-gears"></i> Your Round Share: <span>{{format-number roundPercent style='percent' maximumFractionDigits='2'}}</span><br/>
-          <small>Percent of your contribution to current round.</small>
+          <i class="fa fa-percent"></i> Your Personal Luck: <span>{{format-number roundPercent style='percent' maximumFractionDigits='2'}}</span><br/>
         </div>
-        <div style="display: block;">
-          <i class="fa fa-clock-o"></i>
-          Epoch Switch: <span>{{format-relative applicationController.nextEpoch units="hour"}}</span>
+        <div style="display: block;"><i class="fa fa-calculator"></i> Earnings per day (3h avg): <span>{{format-number earnPerDay}} {{config.Unit}}</span></div>
+        {{#if model.stats.lastShare}}
+        <div style="display: block;"><i class="fa fa-clock-o"></i>
+          Last Share Submitted: <span>{{format-relative (seconds-to-ms (string-to-int model.stats.lastShare))}}</span>
         </div>
+        {{/if}}
+        
       </div>
     </div>
   </div>
@@ -49,13 +52,16 @@
 <div class="container">
   <ul class="nav nav-tabs">
     {{#active-li currentWhen='account.index' role='presentation'}}
-      {{#link-to 'account.index'}}Workers <span class="badge alert-danger">{{model.workersOffline}}</span>{{/link-to}}
+      {{#link-to 'account.index'}}<i class="fas fa-user-hard-hat"></i>  Workers Online <span class="text-green">{{model.workersOnline}}</span> / <span class="text-red">{{model.workersOffline}}</span>{{/link-to}}
     {{/active-li}}
     {{#active-li currentWhen='account.rewards' role='presentation'}}
-      {{#link-to 'account.rewards'}}Rewards{{/link-to}}
+      {{#link-to 'account.rewards'}}<i class="fas fa-calculator"></i> Rewards{{/link-to}}
     {{/active-li}}
     {{#active-li currentWhen='account.payouts' role='presentation'}}
-      {{#link-to 'account.payouts'}}Payouts{{/link-to}}
+      {{#link-to 'account.payouts'}}<i class="fas fa-paper-plane"></i> Payouts{{/link-to}}
+    {{/active-li}}
+    {{#active-li currentWhen='account.minerschat' role='presentation'}}
+      {{#link-to 'account.minerschat'}}<i class="fas fa-comments"></i> Live-Chat{{/link-to}}
     {{/active-li}}
   </ul>
 </div>

@@ -1,10 +1,10 @@
 {
   "threads": 2,
-  "coin": "pplns",
-  "name": "etc-pplns",
-  "pplns": 9000,
-  "network": "classic",
+  "coin": "etc",
+  "name": "etcsolo",
+  "pplns": 0,
   "coin-name":"etc",
+  "network": "classic",
 
 	"unlocker": {
 		"enabled": true,
@@ -32,7 +32,7 @@
   "redis": {
     "endpoint": "127.0.0.1:6379",
     "poolSize": 10,
-    "database": 0,
+    "database": 3,
     "password": ""
   }
 

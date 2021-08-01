@@ -4,53 +4,23 @@
     <h1>How To Mine</h1>
   </div>
 
-  <div class="col-md-12" style="border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px;">
-    <div class="col-md-6">
-      <div class="page-header">
-        <h3>lolMiner</h3>
-      </div>
-      <p class="lead">In order to mine etchash you need   
-        <a href="https://github.com/Lolliedieb/lolMiner-releases/releases" rel="nofollow" target="_blank">lolMiner</a> v1.12+
-      </p>
-      <p><code>./lolMiner --pool {{config.StratumHost1}}:{{config.StratumPort1}} --user [YOUR_ETC_ADDRESS] -c ETC {{if (equals config.Network 'mordor') "--ecip1099-activation 84"}} --ethstratum=ETHPROXY</code></p>
-      <dl class="dl-horizontal">
-        <dt>YOUR_ETC_ADDRESS</dt>
-        <dd>This is your address for payouts, generate one with core-geth, or mine directly to exchange like
-          <a href="http://bittrex.com" rel="nofollow" target="_blank">Bittrex</a>.<br/>
-          <strong>Example:</strong> <code>0xdb454ce9ca12f5d2d0e1568b9817097798460b1c</code>.
-        </dd>
-      </dl>
-      <p>
-        <strong>Full example:</strong>
-        <code>./lolMiner --pool {{config.StratumHost1}}:{{config.StratumPort1}} --user 0xdb454ce9ca12f5d2d0e1568b9817097798460b1c -c ETC {{if (equals config.Network 'mordor') "--ecip1099-activation 84"}} --ethstratum=ETHPROXY</code>.<br/>
-      </p>
-    </div>
+ <h3 class="text-center" style="padding: 0 0 5px 0; margin: 0 0 40px 0;"> Instructions</h3>
+  <div class="jumbotron">
+    <h3 class="text-center" style="padding: 0 0 5px 0; margin: 0 0 40px 0;">Stratum mode using lolMiner</h3>
+    <h4>Download, configure and run lolMiner</h4>
+    <li>Windows / Linux <a href="https://bitcointalk.org/index.php?topic=4724735.0">lolMiner</a></li>
+    <li>Then start your miners by putting the following commands into a bat file</li>
+    <h4>Windows</h4>
+    <h4><li><code>lolMiner.exe --algo ETCHASH --pool {{config.StratumHost1}}:7000 --user 0xdb454ce9ca12f5d2d0e1568b9817097798460b1c</code></li></h4>
 
-    <div class="col-md-6">
-      <div class="page-header">
-        <h3>nanominer <small>mainnet only</small> </h3>
-      </div>
-      <p class="lead">In order to mine etchash you need   
-        <a href="https://github.com/nanopool/nanominer/releases" rel="nofollow" target="_blank">nanominer</a> v1.12.0+
-      </p>
-      <h4>example config</h4>
-      <pre>
-; Address to send funds to. Change this address to yours!
-wallet = 0xdb454ce9ca12f5d2d0e1568b9817097798460b1c
+    <h4>Linux</h4>
+    <h4><li><code>./lolMiner --algo ETCHASH --pool {{config.StratumHost1}}:7000 --user 0xdb454ce9ca12f5d2d0e1568b9817097798460b1c</code></li></h4>
 
-; Coin to mine.
-coin = ETC
-
-pool1={{config.StratumHost1}}:{{config.StratumPort1}}
-      </pre>
-    </div>
   </div>
 
   <div class="col-md-12">
     <div class="col-md-6">
       <p class="text-justify">
-        <h4>Advice</h4>
-        <p>CPU mining is not recommended.</p>
         <h4>Terms of Service</h4>
         <p>By using the pool you accept all possible risks related to experimental software usage.<br/>
            Pool owner can't compensate any irreversible losses, but will do his best to prevent worst case.

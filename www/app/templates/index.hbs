@@ -5,14 +5,13 @@
         <div class="row">
           <h1 style="font-size: 24px">
             <div class="etc-green">
-              <strong><span class="logo-2">Ethereum Classic</span></strong>
+              <strong><span class="logo-2">Ethereum Classic SOLO</span></strong>
             </div>
           </h1>
         </div>
         <div class="row" style="padding:15px 5px;">
-          <strong>Min. payout threshold: {{config.PayoutThreshold}}</strong>, Payouts are continuos throughout the  day.
-          <br/>
-          <span class="label label-success">PPLNS</span> Stable and profitable pool with regular payouts.
+
+          <span class="label label-success">SOLO</span> Stable and profitable pool with regular payouts.
         </div>
       </div>
 
@@ -101,7 +100,7 @@
             <h3>{{t "home.lastfound"}}</h3>
             <div>
               {{#if stats.model.stats.lastBlockFound}}
-              <span>{{seconds-to-rel stats.model.stats.lastBlockFound}}</span>
+              <span>{{format-relative (seconds-to-ms stats.model.stats.lastBlockFound)}}</span>
               {{else}}
               <span>{{t "home.no_block_found"}}</span>
               {{/if}}
@@ -201,8 +200,6 @@
        </div>
         </div>
 
-
-
 <div class="container">
   <div class="stats">
     <h4>Your Stats &amp; Payment History</h4>
@@ -216,12 +213,24 @@
     </div>
   </div>
   <div>
+  
 <div class="container">
+<div class="col-md-6">
+  <h4 class="note note-info text-center">
+     <span class="text-blue"><i class="fas fa-chart-bar" style="font-size:48px;">  Pool Hashrate</i></span>
   {{high-charts mode=mode chartOptions=chartOptions content=chartData}}
-</div>
-  <div class="container">
+  </h4>
+ </div>
+
+  
+  <div class="col-md-6">
+  <h4 class="note note-info text-center">
+     <span class="text-orange"><i class="fas fa-chart-bar" style="font-size:48px;">  Network Difficulty</i></span>
   {{high-charts mode=mode chartOptions=chartDiff content=chartData}}
-</div>
+  </h4>
+  </div>
+  </div>
+      
     {{#if (equals config.Network 'mordor')}}
       <div class="bs-callout bs-callout-danger">
         <h4>
@@ -237,19 +246,15 @@
           <div class="col-md-12">
             <p class="lead text-center">
               <a href="#/help" class="ul-link">
-                <span class="ul ul-danger">stratum</span><br />
-                <code>{{config.StratumHost1}}:{{config.StratumPort1}}</code>
-              </a>
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <p class="lead text-center">
-              <a href="#/help" class="ul-link">
-                <span class="ul ul-danger">TLS/SSL</span><br />
-                <code>{{config.StratumHost}}:{{config.StratumPort}}</code>
-              </a>
+                <span class="ul ul-danger">stratum for GPU</span><br />
+                </a>
+                <code>{{config.StratumHost}}:{{config.StratumPort2b}} (Port: 2G)</code><br />
+                <code>{{config.StratumHost}}:7004 (Port: 5G)</code><br />
+                <code>{{config.StratumHost}}:7005 (Port: 10G)</code><br />
+                <code>{{config.StratumHost}}:{{config.StratumPort17b}} (Port: 17.45G)</code><br />
+                <code>{{config.StratumHost}}:{{config.StratumPort69b}} (Port: 69.81G)</code><br />
+                <code>{{config.StratumHost}}:{{config.StratumPort100b}} (Port: 100G)</code>
+              
             </p>
           </div>
         </div>

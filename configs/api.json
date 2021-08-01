@@ -1,16 +1,16 @@
 {
   "threads": 2,
-  "coin": "pplns",
-  "name": "etc-pplns",
-  "pplns": 9000,
-  "network": "classic",
+  "coin": "etc",
+  "name": "etcsolo",
+  "pplns": 0,
   "coin-name":"etc",
+  "network": "classic",
 
 	"api": {
 		"enabled": true,
 		"purgeOnly": false,
 		"purgeInterval": "10m",
-		"listen": "0.0.0.0:8080",
+		"listen": "0.0.0.0:8083",
 		"statsCollectInterval": "5s",
 		"hashrateWindow": "30m",
 		"hashrateLargeWindow": "3h",
@@ -40,7 +40,7 @@
   "redis": {
     "endpoint": "127.0.0.1:6379",
     "poolSize": 10,
-    "database": 0,
+    "database": 3,
     "password": ""
   },
   
