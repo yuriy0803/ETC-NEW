@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
                         }
                     },
                     title: {
-                        text: "Pool Hashrate",
+                        text: "",
                         style: {
                             color: "#0000ff"
                         }
@@ -159,7 +159,7 @@ export default Ember.Controller.extend({
                         } */
                     },
                     title: {
-                        text: "Network Difficulty",
+                        text: "",
                         style: {
                             color: "#F87217"
                         }

@@ -9,15 +9,17 @@
           <th>Day</th>
           <th>Week</th>
           <th>Month</th>
+          <th>Year</th>
         </tr>
       </thead>
         <tbody>
         <tr>
         <td><span>Time</span></td>
-        <td><span>{{format-number earnPerHour maximumFractionDigits='8'}} ETC</span></td>
-        <td><span>{{format-number earnPerDay maximumFractionDigits='8'}} ETC</span></td>
-        <td><span>{{format-number earnPerWeek maximumFractionDigits='8'}} ETC</span></td>
-        <td><span>{{format-number earnPerMonth maximumFractionDigits='8'}} ETC</span></td>
+        <td><span>{{format-number earnPerHour maximumFractionDigits='2'}} ETC</span></td>
+        <td><span>{{format-number earnPerDay maximumFractionDigits='2'}} ETC</span></td>
+        <td><span>{{format-number earnPerWeek maximumFractionDigits='2'}} ETC</span></td>
+        <td><span>{{format-number earnPerMonth maximumFractionDigits='2'}} ETC</span></td>
+        <td><span>{{format-number earnPerYear maximumFractionDigits='2'}} ETC</span></td>
         </tr>
         </tbody>
        </table>
@@ -53,13 +55,6 @@
     <h3>No workers online</h3>
   {{/if}}
   <div class="alert alert-info" role="alert">
-    <span class="sr-only">Notice:</span>
-    Your average hashrate will be smoothly adjusted until you have shares to fullfill estimation window.<br/>
-    There are two windows, long and short, first is equal to about 30 minutes and long window is usually equal to 3 hours.<br/>
-    Dead (sick) workers will be highlighted in a table of workers if they didn't submit a share for 1/2 of short window,
-    so you can perform maintenance of your rigs.
-  </div>
-  <div class="alert alert-info" role="alert">
-    <strong>Your bulk stats JSON API URL:</strong> <a href="/api/accounts/{{model.login}}">/api/accounts/{{model.login}}</a>
+ <a href="/api/accounts/{{model.login}}">Statistics in JSON</a>
   </div>
 </div>

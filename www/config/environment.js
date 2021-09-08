@@ -22,8 +22,8 @@ module.exports = function(environment) {
         HttpPort: 8888,
   
         // Stratum mining endpoint
-        StratumHost: 'etc-solo.pool-node.com',
-        StratumHost1: 'etc-solo.pool-node.com',
+        StratumHost: 'stratum.pool-node.com',
+        StratumHost1: 'stratum.pool-node.com',
         StratumPort1: 7000,
         StratumPort2b: 7000,
         StratumPort17b: 7001,
@@ -34,7 +34,7 @@ module.exports = function(environment) {
         Network: 'classic',
 
         // Fee and payout details
-        PoolFee: '0.1%',
+        PoolFee: '1.0%',
         PayoutThreshold: '0.5 ETC',
   
         // For network hashrate (change for your favourite fork)

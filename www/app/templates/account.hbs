@@ -39,8 +39,8 @@
         </div>
         <div style="display: block;"><i class="fa fa-calculator"></i> Earnings per day (3h avg): <span>{{format-number earnPerDay}} {{config.Unit}}</span></div>
         {{#if model.stats.lastShare}}
-        <div style="display: block;"><i class="fa fa-clock-o"></i>
-          Last Share Submitted: <span>{{format-relative (seconds-to-ms (string-to-int model.stats.lastShare))}}</span>
+        <div style="display: block;"><i class="fa fa-hourglass-half"></i>
+          Found a share of difficulty: <span>{{format-hashrate model.stats.lastShareDiff}}</span> 
         </div>
         {{/if}}
         
@@ -62,6 +62,9 @@
     {{/active-li}}
     {{#active-li currentWhen='account.minerschat' role='presentation'}}
       {{#link-to 'account.minerschat'}}<i class="fas fa-comments"></i> Live-Chat{{/link-to}}
+    {{/active-li}}
+        {{#active-li currentWhen='account.swap' role='presentation'}}
+      {{#link-to 'account.swap'}}<i class="fa fa-money"></i> SimpleSwap{{/link-to}}
     {{/active-li}}
   </ul>
 </div>
