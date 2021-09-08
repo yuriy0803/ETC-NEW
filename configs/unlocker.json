@@ -8,7 +8,7 @@
 
 	"unlocker": {
 		"enabled": true,
-		"poolFee": 0.1,
+		"poolFee": 1.0,
 		"poolFeeAddress": "",
 		"depth": 120,
 		"immatureDepth": 20,
