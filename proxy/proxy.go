@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 	"net/http"
-  "strconv"
+	"strconv"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -50,9 +50,8 @@ type Session struct {
 
 	// Stratum
 	sync.Mutex
-	conn  net.Conn
+	conn           net.Conn
 	login          string
-  lastErr error
 	subscriptionID string
 	JobDeatils     jobDetails
 }
@@ -124,17 +123,17 @@ func NewProxy(cfg *Config, backend *storage.RedisClient) *ProxyServer {
 					block, _ := rpc.GetBlockByHeight(height)
 					timestamp, _ := strconv.ParseInt(strings.Replace(block.Timestamp, "0x", "", -1), 16, 64)
 					prev := height - 100
-					if (prev < 0) {
+					if prev < 0 {
 						prev = 0
 					}
 					n := height - prev
-					if (n > 0) {
+					if n > 0 {
 						prevblock, err := rpc.GetBlockByHeight(prev)
 						if err != nil || prevblock == nil {
 							log.Fatalf("Error while retrieving block from node: %v", err)
 						} else {
 							prevtime, _ := strconv.ParseInt(strings.Replace(prevblock.Timestamp, "0x", "", -1), 16, 64)
-							blocktime := float64(timestamp - prevtime) / float64(n)
+							blocktime := float64(timestamp-prevtime) / float64(n)
 							err = backend.WriteNodeState(cfg.Name, t.Height, t.Difficulty, blocktime)
 							if err != nil {
 								log.Printf("Failed to write node state to backend: %v", err)
