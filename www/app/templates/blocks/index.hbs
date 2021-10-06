@@ -1,14 +1,14 @@
 {{#if model.matured}}
-<h4>Matured Blocks</h4>
-<table class="table table-condensed table-striped">
+<h4>{{t "block.matured"}}</h4>
+<table class="table table-hover table-dark">
   <thead>
     <tr>
-      <th>Height</th>
-      <th>Block Hash</th>
-      <th>Time Found</th>
-      <th>Variance</th>
-      <th>Reward</th>
-      <th>Type</th>
+        <th>{{t "block.height"}}</th>
+        <th>{{t "block.login"}}</th>
+        <th>{{t "block.time_found"}}</th>
+        <th>{{t "block.variance"}}</th>
+        <th>{{t "block.reward"}}</th>
+        <th>{{t "block.type"}}</th>
     </tr>
   </thead>
   <tbody>
@@ -18,5 +18,5 @@
   </tbody>
 </table>
 {{else}}
-<h3>No matured blocks yet</h3>
+<h3>{{t "block.no_matured_blocks_yet"}}</h3>
 {{/if}}

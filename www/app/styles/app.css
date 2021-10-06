@@ -10,12 +10,12 @@ body {
   background: url('/bg.png');
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
 }
 .center {
   align-items: center;
@@ -29,6 +29,7 @@ body {
 body {
   padding-top: 20px;
   padding-bottom: 5px;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,255,232,1)), color-stop(100%,rgb(95 191 0 / 66%))); /* Chrome4-9,Safari4-5 */
 }
 
 body > .container {
@@ -53,7 +54,7 @@ body > .container {
   margin: 0;
 	padding: 40px 0 15px 0;
 	margin-bottom: 15px;
-  background-color: #e9ffee;
+  background-color: #f0ad4e80;
 }
 
 code {
@@ -65,64 +66,76 @@ code {
 }
 
 .navbar-default {
-	background-color: #ffffff;
-	border-color: #61BD81;
-  border-bottom-width: 2px;
+    background-color: #04191f;
+    border-color: #69102b;
 }
+
+.bg-gradientblue {
+    background: rgba(0,4,8,1);
+    background: -moz-linear-gradient(left, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,4,8,1)), color-stop(100%, rgba(12,68,128,1)));
+    background: -webkit-linear-gradient(left, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    background: -o-linear-gradient(left, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    background: -ms-linear-gradient(left, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    background: linear-gradient(to right, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000408', endColorstr='#0c4480', GradientType=1 );
+    border-color: #69102b;
+}
+
 .navbar-default .navbar-brand {
-	color: #4A4A4A;
+    color: #dadada;
 }
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-	color: #4A4A4A;
+    color: #ffffff;
 }
 .navbar-default .navbar-text {
-	color: #4A4A4A;
+    color: #dadada;
 }
 .navbar-default .navbar-nav > li > a {
-	color: #4A4A4A;
+    color: #dadada;
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-	color: #61BD81;
+    color: #ffffff;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	color: #ffffff;
-	background-color: #61BD81;
+    color: #ffffff;
+    background-color: #0a6c9d00;
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-	color: #ffffff;
-	background-color: #69102b;
+    color: #ffffff;
+    background-color: #69102b;
 }
 .navbar-default .navbar-toggle {
-	border-color: #2885da;
+    border-color: #0a6c9d;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-	background-color: #2885da;
+    background-color: #0a6c9d;
 }
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #4A4A4A;
+    background-color: #dadada;
 }
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-	border-color: #4A4A4A;
+    border-color: #dadada;
 }
 .navbar-default .navbar-link {
-	color: #4A4A4A;
+    color: #dadada;
 }
 .navbar-default .navbar-link:hover {
-	color: #ffffff;
+    color: #ffffff;
 }
 
 @media (max-width: 767px) {
-	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
-		color: #4A4A4A;
-	}
-	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-		color: #ffffff;
-	}
-	.navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-		color: #ffffff;
-		background-color: #3f9ff7;
-	}
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #dadada;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #ffffff;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #ffffff;
+        background-color: #0a6c9d;
+    }
 }
 
 span.logo-1 {
@@ -134,7 +147,7 @@ span.logo-1 {
 
 span.logo-2 {
 	font-weight: 700;
-	color: #4A4A4A;
+	color: #000408;
   padding: 0 23px 0 5px;
 }
 
@@ -532,7 +545,7 @@ h4.note {
 
 .info-holder p,
 .display>.number span {
-    color: #2c4754;
+    color: #000408;
     text-shadow: -2px -1px 3px #c5c5c5, 1px 1px 3px #6568693b;
 }
 
@@ -548,13 +561,25 @@ h4.note {
 .info-holder, .stat-holder {
     padding: 15px;
     /* background: linear-gradient(45deg,#fafaf8 10%,#fbfafa 90%); /* */
-background: linear-gradient(45deg,#e9ffee 10%,#f1f1f1 90%);
+    background: linear-gradient(45deg,rgb(255 255 255 / 15%),#f1f1f1 90%);
     border: 1px solid rgba(255,255,255,.05);
     border-left: 1px solid #ececec;
     border-right: 1px solid #1736d2;
     border-bottom: 1px solid #e11f1f;
     border-top: 1px solid #e8e5e5;
     height: 110px;
+}
+
+.info-holder, .stat-holder1 {
+    padding: 15px;
+    /* background: linear-gradient(45deg,#fafaf8 10%,#fbfafa 90%); /* */
+    background: linear-gradient(357deg,rgb(216 46 132 / 12%),#fcf8e3 90%);
+    border: 1px solid rgba(255,255,255,.05);
+    border-left: 1px solid #ececec;
+    border-right: 1px solid #1736d2;
+    border-bottom: 1px solid #e11f1f;
+    border-top: 1px solid #e8e5e5;
+    height: 38.89px;
 }
 
 .info-holder {
@@ -647,7 +672,7 @@ background: linear-gradient(45deg,#e9ffee 10%,#f1f1f1 90%);
 
 body {
     font-family: "Roboto",Helvetica,Arial,sans-serif;
-    color: #4e4d4d;
+    color: #000408;
     background-color: #f5f6f7; /* */
 }
 
@@ -788,4 +813,16 @@ background: linear-gradient(to bottom, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, 
 .worker-class.warning.offline-5 > td{
   background-color: #ff1e1e;
   color:#ffffff;
+}
+
+.navbar-default {
+    background: rgba(0,4,8,1);
+    background: -moz-linear-gradient(left, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,4,8,1)), color-stop(100%, rgba(12,68,128,1)));
+    background: -webkit-linear-gradient(left, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    background: -o-linear-gradient(left, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    background: -ms-linear-gradient(left, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    background: linear-gradient(to right, rgba(0,4,8,1) 0%, rgba(12,68,128,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000408', endColorstr='#0c4480', GradientType=1 );
+    border-color: #69102b;
 }

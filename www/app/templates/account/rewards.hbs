@@ -1,6 +1,6 @@
 <div class="container">
   {{#if model.rewards}}
-  <h4>Your Latest Rewards</h4>
+  <h4>{{t "home.your_latest_rewards"}}</h4>
   <table class="table table-condensed table-striped">
   {{#each model.sumrewards as |sumreward|}}
   <tr>
@@ -10,13 +10,13 @@
   {{/each}}
    </table>
    <span class="label label-default">Immature</span> <span class="label label-success">Matured</span>
-  <table class="table table-condensed table-striped">
+  <table class="table">
     <thead>
       <tr>
-        <th>Block Height</th>
-        <th>Time Found</th>
-        <th>Reward</th>
-        <th>Round Share</th>
+        <th>{{t "home.blockheight"}}</th>
+        <th>{{t "block.time_found"}}</th>
+        <th>{{t "block.reward"}}</th>
+        <th>{{t "account.round_share"}}</th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +37,6 @@
     </tbody>
   </table>
   {{else}}
-  <h3>No rewards yet</h3>
+  <h3>{{t "account.no_rewards_yet"}}</h3>
   {{/if}}
 </div>

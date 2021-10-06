@@ -1,18 +1,18 @@
-<tr>
+<tr class="stat-holder1">
   <td>
     {{#if block.uncle}}
-      <a href="https://blockscout.com/etc/mainnet/blocks/{{block.uncleHeight}}" rel="nofollow" target="_blank">{{format-number block.height}}</a>
+      <a href="https://etc.tokenview.com/en/block/{{block.uncleHeight}}" rel="nofollow" target="_blank">{{format-number block.height}}</a>
     {{else}}
-      <a href="https://blockscout.com/etc/mainnet/blocks/{{block.height}}" rel="nofollow" target="_blank">{{format-number block.height}}</a>
+      <a href="https://etc.tokenview.com/en/block/{{block.height}}" rel="nofollow" target="_blank">{{format-number block.height}}</a>
     {{/if}}
   </td>
   <td>
     {{#if block.uncle}}
-      <td>{{#link-to 'account' block.login class='hash'}}{{block.login}}{{/link-to}}</td>
+      <td>{{identicon block.login 16}} {{#link-to 'account' block.login class='hash'}}{{block.login}}{{/link-to}}</td>
     {{else if block.orphan}}
       <span class="label label-danger">Orphan</span>
     {{else}}
-      <td>{{#link-to 'account' block.login class='hash'}}{{block.login}}{{/link-to}}</td>
+      <td>{{identicon block.login 16}} {{#link-to 'account' block.login class='hash'}}{{block.login}}{{/link-to}}</td>
     {{/if}}
   </td>
   <td>{{format-date-locale block.timestamp}}</td>
@@ -32,9 +32,9 @@
   </td>
   <td>
     {{#if block.uncle}}
-    <span class="label label-default">Uncle</span>
+    <span class="label label-default">{{t "block.uncle"}}</span>
     {{else if block.isOk}}
-    <span class="label label-primary">Block</span>
+    <span class="label label-primary">{{t "block.block"}}</span>
     {{/if}}
   </td>
 </tr>

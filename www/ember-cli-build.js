@@ -25,7 +25,11 @@ module.exports = function(defaults) {
   app.import('bower_components/bootstrap/dist/css/bootstrap.min.css')
   app.import('bower_components/bootstrap/dist/js/bootstrap.min.js');
   app.import('bower_components/font-awesome/css/font-awesome.min.css')
-
+  app.import('vendor/jdenticon.js', {
+    using: [
+        { transformation: 'amd', as: 'jdenticon' }
+    ]
+  });
   var extraAssets = new Funnel('bower_components/font-awesome/fonts', {
     srcDir: '/',
     include: ['**/*.ttf', '**/*.woff', '**/*.woff2'],

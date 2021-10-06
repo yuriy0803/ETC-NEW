@@ -4,6 +4,10 @@ product:
   html:
     info: '<strong>{product}</strong> will cost <em>{price, number, USD}</em> if ordered by {deadline, date, time}'
 
+pool:
+
+  info: Welcome to Ethereum Classic Solo
+
 menu:
   home: Home
   help: Help
@@ -11,6 +15,7 @@ menu:
   payments: Payments
   miners: Miners
   about: About
+  finders: Finders
   i18n:
     about: about
     help: help
@@ -43,10 +48,15 @@ home:
   lastfound: Last Found
   payout_interval: Payout Interval
   price: Price
-
-  query_history: Your Stats and Payment History
+  reward: Block Reward Price
+  instructions: Instructions
+  connection: Connection for GPU & ASIC
+  poolhashrate: Pool Hashrate
+  networkdifficulty: Network Difficulty
+  query_history: Your Stats & Payment History
   input:
     enter_your_wallet_address: Enter Your Wallet Address
+  your_latest_rewards: Your Latest Rewards
 
   button:
     lookup: Lookup
@@ -64,10 +74,11 @@ account:
   current: Current Payment
   last_share_submitted: Last Share Submitted
   online: Workers Online
-  hashrate: Hashrate
+  hashrate: Current Hashrate
+  average_aashrate: Average Hashrate	
   earnings:
-    perday: Earnings per day
-    short_avg: short avg.
+    miner: Earnings per day (3h avg)
+    worker: Earnings / day (short avg)
   blocks:
     found: Blocks Found
   total:
@@ -76,12 +87,17 @@ account:
   round_share: Your Round Share
   round_share_description: Percent of your contribution to current round.
   epoch_switch: Epoch Switch
+  workers_name: Workers Name
   workers: Workers
   payouts: Payouts
   lastshare: Last Share
   hashrate_30m: Hashrate (30m)
   hashrate_3h: Hashrate (3h)
   your_round_share: Your Round Share
+  no_rewards_yet: No rewards yet
+  last_24h_reward: Last 24h Reward
+  epoch: Epoch
+  dag_size: DAG Size
 
   your_workers: Workers
   last_share: Last Share
@@ -90,7 +106,24 @@ account:
   no_workers_online: No workers online
   notice: Notice
   notice_html: Your average hashrate will be smoothly adjusted until you have shares to fullfill estimation window.<br/>There are two windows, long and short, first is equal to about 30 minutes and long window is usually equal to 3 hours.<br/>Dead (sick) workers will be highlighted in a table of workers if they didn't submit a share for 1/2 of short window, so you can perform maintenance of your rigs.
-  json_api_url: Your bulk stats JSON API URL
+  json_api_url: Statistics in JSON
+  hour: Hour
+  day: Day
+  week: Week
+  month: Month
+  year: Year
+  time: Time
+  your_Workers: Your Workers
+  valid: Valid
+  stale: Stale
+  invalid: Invalid 24h
+  your_personal_luck: Your Personal Luck
+  shares: Shares
+  found_a_share_of_difficulty: Found a share of difficulty
+  rewards: Rewards
+  live_chat: Live-Chat
+  simpleswap: SimpleSwap
+  
 
 payout:
   latest_payouts: Your Latest Payouts
@@ -100,20 +133,23 @@ payout:
   no_payouts_yet: No payouts yet
 
 block:
-  pool_rewards: Pool always pay full block reward including TX fees and uncle rewards.
   pool_notice:
-    html: Block maturity requires <em style="text-decoration:underline">up to</em> <span class="label label-success">{success}</span> blocks. Usually it's less indeed.
+    html: Block maturation requires <em style="text-decoration:underline">up to</em> <span class="label label-success">{success}</span> new blocks in the network (approx. an hour)
   blocks: Blocks
+  block: Block
+  block_finders: Block finders
+  uncle: Uncle
   immature: Immature
   new: New Blocks
   orphan: Orphan
   no_matured_blocks_yet: No matured blocks yet
   reward: Reward
   height: Height
-  hash: Hash
+  login: Login
   time_found: Time Found
-  variance: Share Variance (Shares/Diff)
+  variance: Luck
   matured: Matured Blocks
+  type: Type
   immature_blocks: Immature Blocks
   no_immature_blocks_yet: No immature blocks yet
   no_new_blocks_yet: No new blocks yet
@@ -121,7 +157,7 @@ block:
 
 luck:
   blocks: Blocks
-  shares_diff: Shares/Diff
+  shares_diff: Average Luck
   uncle_rate: Uncle Rate
   orphan_rate: Orphan Rate
 
@@ -148,6 +184,7 @@ miners:
   last_beat: Last beat
   no_miners: No miners
   miners: Miners
+  miners_on_the_list: Miners on the list
 
 wallet:
   dapp_html: <a href="https://ethereum.org/">https://ethereum.org/</a>

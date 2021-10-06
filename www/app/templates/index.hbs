@@ -5,14 +5,9 @@
         <div class="row">
           <h1 style="font-size: 24px">
             <div class="etc-green">
-              <strong><span class="logo-2">Ethereum Classic</span></strong>
+              <strong><span class="logo-2">{{t "pool.info"}}</span></strong>
             </div>
           </h1>
-        </div>
-        <div class="row" style="padding:15px 5px;">
-          <strong>Min. payout threshold: {{config.PayoutThreshold}}</strong>, Payouts are continuos throughout the  day.
-          <br/>
-          <span class="label label-success">PPLNS</span> Stable and profitable pool with regular payouts.
         </div>
       </div>
 
@@ -141,7 +136,7 @@
       <div class="col-lg-4 col-md-3 col-sm-6 col-xs-6 stat-holder">
         <div class="display">
           <div class="icon">
-            <i class="fa fa fa-money"></i>
+            <i class="fa fa-percent"></i>
           </div>
           <div class="number">
             <h3>{{t "home.pool_fee"}}</h3>
@@ -172,7 +167,7 @@
             <i class="fa fa-cube"></i>
           </div>
           <div class="number">
-            <h3>Block Reward Price</h3>
+            <h3>{{t "home.reward"}}</h3>
             <div>
               <span>{{#if (eq config.Currency 'USD') }} {{ format-ethusd config.Blockpreis model.exchangedata.current_price }}
                         {{else}}
@@ -189,7 +184,7 @@
             <i class="fa fa fa-money"></i>
           </div>
           <div class="number">
-            <h3>Current price</h3>
+            <h3>{{t "home.price"}}</h3>
             <div>
               <span>${{model.exchangedata.current_price}}</span>
             </div>
@@ -201,33 +196,37 @@
        </div>
         </div>
 
-
-
 <div class="container">
   <div class="stats">
-    <h4>Your Stats &amp; Payment History</h4>
+    <h3>{{t "home.query_history"}}</h3>
     <div class="input-group">
-      {{input value=cachedLogin class="form-control" placeholder="Enter Your Ethereum Classic Address"}}
+      {{input value=cachedLogin class="form-control" placeholder=(t "home.input.enter_your_wallet_address")}}
       <span class="input-group-btn">
         <button class="btn btn-primary btn-etc" type="button" {{action 'lookup' cachedLogin}}>
-          <span style="display: inline;"><i class="fa fa-search"></i> Lookup</span>
+          <span style="display: inline;"><i class="fa fa-search"></i> {{t "home.button.lookup"}}</span>
       </button>
       </span>
     </div>
   </div>
   <div>
+  
 <div class="container">
+<div class="col-md-6">
   <h4 class="note note-info text-center">
-     <span class="text-green"><i class="fas fa-chart-bar" style="font-size:48px;"></i></span>
+     <span class="text-blue"><i class="fas fa-chart-bar" style="font-size:48px;">  {{t "home.poolhashrate"}}</i></span>
   {{high-charts mode=mode chartOptions=chartOptions content=chartData}}
   </h4>
-</div>
-  <div class="container">
+ </div>
+
+  
+  <div class="col-md-6">
   <h4 class="note note-info text-center">
-     <span class="text-orange"><i class="fas fa-chart-bar" style="font-size:48px;"></i></span>
+     <span class="text-orange"><i class="fas fa-chart-bar" style="font-size:48px;">  {{t "home.networkdifficulty"}}</i></span>
   {{high-charts mode=mode chartOptions=chartDiff content=chartData}}
   </h4>
-</div>
+  </div>
+  </div>
+      
     {{#if (equals config.Network 'mordor')}}
       <div class="bs-callout bs-callout-danger">
         <h4>
@@ -238,24 +237,17 @@
     {{/if}}
     <div class="jumbotron">
       <div class="container">
-        <h3 class="text-center" style="padding: 0 0 5px 0; margin: 0 0 40px 0;"> Instructions</h3>
+        <h3 class="text-center" style="padding: 0 0 5px 0; margin: 0 0 40px 0;">{{t "home.instructions"}}</h3>
         <div class="row">
           <div class="col-md-12">
             <p class="lead text-center">
               <a href="#/help" class="ul-link">
-                <span class="ul ul-danger">stratum</span><br />
-                <code>{{config.StratumHost1}}:{{config.StratumPort1}}</code>
-              </a>
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <p class="lead text-center">
-              <a href="#/help" class="ul-link">
-                <span class="ul ul-danger">TLS/SSL</span><br />
-                <code>{{config.StratumHost}}:{{config.StratumPort}}</code>
-              </a>
+                <span class="ul ul-danger">{{t "home.connection"}}</span><br/>
+                <br/>
+                </a>
+                <code>{{config.StratumHost}}:{{config.StratumPort2b}} (Port: Low)</code><br />
+                <code>{{config.StratumHost}}:{{config.StratumPort17b}} (Port: High)</code>
+              
             </p>
           </div>
         </div>

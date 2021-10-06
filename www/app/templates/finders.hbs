@@ -1,21 +1,21 @@
 <div class="jumbotron">
   <div class="container">
-    <strong>Miners on the list:</strong> <span class="label label-info">{{model.findersTotal}}</span>
+    <strong>{{t "miners.miners_on_the_list"}}</strong> <span class="label label-info">{{model.findersTotal}}</span>
   </div>
 </div>
 <div class="container">
   {{#if model.finders}}
-  <h4>Block finders</h4>
-  <table class="table table-condensed table-striped">
+  <h4>{{t "block.block_finders"}}</h4>
+  <table class="table table-hover table-dark">
     <thead>
       <tr>
-        <th>Miner</th>
-        <th>Blocks</th>
+        <th>{{t "menu.miners"}}</th>
+        <th>{{t "block.blocks"}}</th>
       </tr>
     </thead>
     <tbody>
       {{#each model.finders as |f|}}
-      <tr>
+      <tr class="stat-holder1">
         <td>{{#link-to 'account' f.address class='hash'}}{{f.address}}{{/link-to}}</td>
         <td>{{format-number f.blocks}}</td>
       </tr>
@@ -23,6 +23,6 @@
     </tbody>
   </table>
   {{else}}
-  <h3>No blocks yet</h3>
+  <h3>{{t "block.no_new_blocks_yet"}}</h3>
   {{/if}}
 </div>
