@@ -23,8 +23,8 @@ export default Ember.Controller.extend({
                 a = {
                     chart: {
                         backgroundColor: "rgba(255, 255, 255, 0.1)",
-                        type: "area",
-                        height: 300,
+                        type: "spline",
+                        height: 250,
                         marginRight: 10,
                         events: {
                             load: function() {
@@ -37,9 +37,9 @@ export default Ember.Controller.extend({
                         }
                     },
                     title: {
-                        text: "",
+                        text: "Pool Hashrate",
                         style: {
-                            color: "#0000ff"
+                            color: "#000"
                         }
                     },
                     xAxis: {
@@ -49,25 +49,21 @@ export default Ember.Controller.extend({
                             }
                         },
                         ordinal: false,
-                        type: "datetime",
-
-                        gridLineWidth: 1,
-                        gridLineColor: "#000000"
+                        type: "datetime"
                     },
                     yAxis: {
                         title: {
                             text: "HASHRATE",
                             style: {
-                                color: "#0000ff"
+                                color: "#000"
                             }
                         },
+                        min: 0,
                         labels: {
                             style: {
                                 color: "#000"
                             }
-                        },
-                        gridLineWidth: 1,
-                        gridLineColor: "#000000"
+                        }
                     },
                     plotLines: [{
                         value: 0,
@@ -75,38 +71,20 @@ export default Ember.Controller.extend({
                         color: "#ccc"
                     }],
                     legend: {
-                        enabled: false
+                        enabled: true
                     },
                     tooltip: {
                         formatter: function() {
-                            function scale(v) {
-                                var f = v;
-                                var units = ['', 'K', 'M', 'G', 'T'];
-                                for (var i = 0; i < 5 && f > 1000; i++)  {
-                                    f /= 1000;
-                                }
-                                return f.toFixed(2) + ' ' + units[i];
-                            }
-                            var h = scale(this.point.y);
-
-                            return "<b>" + this.point.d + "</b><br />" +
-                                "<b>Hashrate&nbsp;" + h + "H/s</b>";
+                            return this.y > 1000000000000 ? "<b>" + this.point.d + "<b><br>Hashrate&nbsp;" + (this.y / 1000000000000).toFixed(2) + "&nbsp;TH/s</b>" : this.y > 1000000000 ? "<b>" + this.point.d + "<b><br>Hashrate&nbsp;" + (this.y / 1000000000).toFixed(2) + "&nbsp;GH/s</b>" : this.y > 1000000 ? "<b>" + this.point.d + "<b><br>Hashrate&nbsp;" + (this.y / 1000000).toFixed(2) + "&nbsp;MH/s</b>" : "<b>" + this.point.d + "<b><br>Hashrate<b>&nbsp;" + this.y.toFixed(2) + "&nbsp;H/s</b>";
                         },
                         useHTML: true
                     },
                      exporting: {
                           enabled: false
                      },
-                    plotOptions: {
-                        line: {
-                            pointInterval: 5
-                        },
-                        pointInterval:10
-                    },
                     series: [{
-                        color: "#0000ff",
+                        color: "#15BD27",
                         name: "Hashrate",
-                        shadow: true,
                         data: function() {
                             var e, a = [];
                             if (null != t) {
@@ -144,8 +122,8 @@ export default Ember.Controller.extend({
                 a = {
                     chart: {
                         backgroundColor: "rgba(255, 255, 255, 0.1)",
-                        type: "area",
-                        height: 300,
+                        type: "spline",
+                        height: 250,
                         marginRight: 10,
                         //zoomType: 'xy',
                        /* events: {
@@ -159,9 +137,9 @@ export default Ember.Controller.extend({
                         } */
                     },
                     title: {
-                        text: "",
+                        text: "Network Difficulty",
                         style: {
-                            color: "#F87217"
+                            color: "#000"
                         }
                     },
                  	rangeSelector : {
@@ -242,16 +220,14 @@ export default Ember.Controller.extend({
                           //minRange: 1
                         },
                         ordinal: false,
-                        type: "datetime",
-                        gridLineWidth: 1,
-                        gridLineColor: "#000000"
+                        type: "datetime"
                     },
                     yAxis: {
                     
                         title: {
                             text: "DIFFICULTY",
                             style: {
-                                color: "#F87217"
+                                color: "#000"
                             }
                         },
                        
@@ -259,9 +235,7 @@ export default Ember.Controller.extend({
                             style: {
                                 color: "#000"
                             }
-                        },
-                        gridLineWidth: 1,
-                        gridLineColor: "#000000"
+                        }
                     },
                     plotLines: [{
                         value: 0,
@@ -273,34 +247,16 @@ export default Ember.Controller.extend({
                     },
                     tooltip: {
                         formatter: function() {
-                            function scale(v) {
-                                var f = v;
-                                var units = ['', 'K', 'M', 'G', 'T', 'P'];
-                                for (var i = 0; i < 5 && f > 1000; i++)  {
-                                    f /= 1000;
-                                }
-                                return f.toFixed(3) + ' ' + units[i];
-                            }
-                            var h = scale(this.point.y);
-
-                            return "<b>" + this.point.d + "</b><br />" +
-                                "<b>Difficulty&nbsp;" + h + "H/s</b>";
+                            return this.y > 1000000000000 ? "<b>" + this.point.d + "<b><br>Difficulty&nbsp;" + (this.y / 1000000000000).toFixed(2) + "&nbsp;TH/s</b>" : this.y > 1000000000 ? "<b>" + this.point.d + "<b><br>Difficulty&nbsp;" + (this.y / 1000000000).toFixed(2) + "&nbsp;GH/s</b>" : this.y > 1000000 ? "<b>" + this.point.d + "<b><br>Difficulty&nbsp;" + (this.y / 1000000).toFixed(2) + "&nbsp;MH/s</b>" : "<b>" + this.point.d + "<b><br>Difficulty<b>&nbsp;" + this.y.toFixed(2) + "&nbsp;H/s</b>";
                         },
                         useHTML: true
                     },
                      exporting: {
                        enabled: true
                      },
-                    plotOptions: {
-                        line: {
-                            pointInterval: 5
-                        },
-                        pointInterval:10
-                    },
                     series: [{
                         color: "#F87217",
                         name: "Difficulty",
-                        shadow: true,
                         data: function() {
                             var e, a = [];
                             if (null != t) {

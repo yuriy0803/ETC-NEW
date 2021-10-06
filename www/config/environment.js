@@ -15,26 +15,23 @@ module.exports = function(environment) {
   
       APP: {
         // API host and port
-        ApiUrl: '//etc-solo.pool-node.com//',
+        ApiUrl: '//etc.pool-node.com//',
   
         // HTTP mining endpoint
-        HttpHost: 'http://etc-solo.pool-node.com',
+        HttpHost: 'http://etc.pool-node.com',
         HttpPort: 8888,
   
         // Stratum mining endpoint
         StratumHost: 'stratum.pool-node.com',
+        StratumPort: 4444,
         StratumHost1: 'stratum.pool-node.com',
-        StratumPort1: 7000,
-        StratumPort2b: 7000,
-        StratumPort17b: 7001,
-        StratumPort69b: 7002,
-        StratumPort100b: 7003,
+        StratumPort1: 8008,
   
         // The ETC network used (classic, mordor)
         Network: 'classic',
 
         // Fee and payout details
-        PoolFee: '1.0%',
+        PoolFee: '0.1%',
         PayoutThreshold: '0.5 ETC',
   
         // For network hashrate (change for your favourite fork)
@@ -50,7 +47,7 @@ module.exports = function(environment) {
       /* Override ApiUrl just for development, while you are customizing
         frontend markup and css theme on your workstation.
       */
-      ENV.APP.ApiUrl = 'http://localhost:8083/'
+      ENV.APP.ApiUrl = 'http://localhost:8080/'
       // ENV.APP.LOG_RESOLVER = true;
       // ENV.APP.LOG_ACTIVE_GENERATION = true;
       // ENV.APP.LOG_TRANSITIONS = true;

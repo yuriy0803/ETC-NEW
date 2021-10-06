@@ -47,5 +47,6 @@
     "ember-welcome-page": "^1.0.3",
     "highcharts": "^6.0.7",
     "loader.js": "^4.0.10"
-  }
+  },
+  "dependencies": {}
 }

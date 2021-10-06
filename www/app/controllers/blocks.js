@@ -97,7 +97,7 @@ export default Ember.Controller.extend({
                     tooltip: {
                         formatter: function() {
                             var ss = this.y > 1000000000000 ? "<b>" + (this.y / 1000000000000).toFixed(2) + "&nbsp;TH</b>" : this.y > 1000000000 ? "<b>" + (this.y / 1000000000).toFixed(2) + "&nbsp;GH</b>" : this.y > 1000000 ? "<b>" + (this.y / 1000000).toFixed(2) + "&nbsp;MH</b>" : this.y > 1000 ? "<b>" + (this.y / 1000).toFixed(2) + "&nbsp;KH</b>" : "<b>" + this.y.toFixed(2) + "&nbsp;H</b>";
-                            return ss + "<br/><b>Number:&nbsp;" + this.point.h + "</b><br/><b>" + this.point.d + "</b><br/><b>Reward:&nbsp;" + (this.point.w/1000000000000000000).toFixed(8) + e.get ('config.Unit') + " </b><br/><b>Variance:&nbsp;" + (this.point.s*100).toFixed(2)+ "%</b>";
+                            return ss + "<br/><b>Number:&nbsp;" + this.point.h + "</b><br/><b>" + this.point.d + "</b><br/><b>Reward:&nbsp;" + (this.point.w/1000000000000000000).toFixed(8) + e.get('config.Unit') + " </b><br/><b>Variance:&nbsp;" + (this.point.s*100).toFixed(2)+ "%</b>";
                         },
 
                         useHTML: true

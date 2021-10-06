@@ -9,8 +9,6 @@ Router.map(function() {
   this.route('account', { path: '/account/:login' }, function() {
     this.route('payouts');
     this.route('rewards');
-    this.route('minerschat');
-    this.route('swap');
   });
   this.route('not-found');
 

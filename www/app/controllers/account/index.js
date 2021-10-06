@@ -143,8 +143,8 @@ export default Ember.Controller.extend({
                         enabled: true
                     },
                     series: [{
-                        color: "#E99002",
-                        name: "Current Hashrate",
+                        color: "#15BD27",
+                        name: "3 hours average hashrate",
                         data: function() {
                             var e, a = [];
                             if (null != t) {
@@ -154,7 +154,7 @@ export default Ember.Controller.extend({
                                         l = 0;
                                     r = new Date(1e3 * t[e].x);
                                     l = r.toLocaleString();
-                                    n = t[e].minerHash;
+                                    n = t[e].minerLargeHash;
                                     a.push({
                                         x: r,
                                         d: l,
@@ -171,8 +171,8 @@ export default Ember.Controller.extend({
                             return a;
                         }()
                     }, {
-                        name: "Average Hashrate",
-                        color: "#15BD27",
+                        name: "30 minutes average hashrate",
+                        color: "#E99002",
                         data: function() {
                             var e, a = [];
                             if (null != t) {
@@ -182,7 +182,7 @@ export default Ember.Controller.extend({
                                         l = 0;
                                     r = new Date(1e3 * t[e].x);
                                     l = r.toLocaleString();
-                                    n = t[e].minerLargeHash;
+                                    n = t[e].minerHash;
                                     a.push({
                                         x: r,
                                         d: l,
@@ -440,12 +440,6 @@ export default Ember.Controller.extend({
   earnPerMonth: Ember.computed('model', {
     get() {
       return 672 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
-      this.getWithDefault('model.hashrate') / this.get('hashrate');
-    }
-  }),
-  earnPerYear: Ember.computed('model', {
-    get() {
-      return 8760 * 60 * 60 / this.get('config').BlockTime * this.get('config').BlockReward *
       this.getWithDefault('model.hashrate') / this.get('hashrate');
     }
   }),
