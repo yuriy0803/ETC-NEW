@@ -461,7 +461,7 @@ func (r *RedisClient) WriteNodeState(id string, height uint64, diff *big.Int, bl
 		tx.HSet(r.formatKey("nodes"), join(id, "height"), strconv.FormatUint(height, 10))
 		tx.HSet(r.formatKey("nodes"), join(id, "difficulty"), diff.String())
 		tx.HSet(r.formatKey("nodes"), join(id, "lastBeat"), strconv.FormatInt(now, 10))
-    tx.HSet(r.formatKey("nodes"), join(id, "blocktime"), strconv.FormatFloat(blocktime, 'f', 4, 64))
+		tx.HSet(r.formatKey("nodes"), join(id, "blocktime"), strconv.FormatFloat(blocktime, 'f', 4, 64))
 		return nil
 	})
 	return err
