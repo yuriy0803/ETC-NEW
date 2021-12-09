@@ -52,25 +52,16 @@ type Proxy struct {
 	Debug       bool  `json:"debug"`
 
 	Stratum Stratum `json:"stratum"`
-
-	StratumNiceHash StratumNiceHash `json:"stratum_nice_hash"`
 }
 
 type Stratum struct {
-	Enabled bool   `json:"enabled"`
-	Listen  string `json:"listen"`
-	Timeout string `json:"timeout"`
-	MaxConn int    `json:"maxConn"`
+	Enabled  bool   `json:"enabled"`
+	Listen   string `json:"listen"`
+	Timeout  string `json:"timeout"`
+	MaxConn  int    `json:"maxConn"`
 	TLS      bool   `json:"tls"`
 	CertFile string `json:"certFile"`
 	KeyFile  string `json:"keyFile"`
-}
-
-type StratumNiceHash struct {
-	Enabled bool   `json:"enabled"`
-	Listen  string `json:"listen"`
-	Timeout string `json:"timeout"`
-	MaxConn int    `json:"maxConn"`
 }
 
 type Upstream struct {

@@ -73,20 +73,26 @@ type LuckCharts struct {
 }
 
 type SumRewardData struct {
-	Interval int64  `json:"inverval"`
-	Reward   int64  `json:"reward"`
-	Name     string `json:"name"`
-	Offset   int64  `json:"offset"`
-	Blocks   int64  `json:"blocks"`
+	Interval int64   `json:"inverval"`
+	Reward   int64   `json:"reward"`
+	Name     string  `json:"name"`
+	Offset   int64   `json:"offset"`
+	Blocks   int64   `json:"blocks"`
+	Effort   float64 `json:"averageLuck"`
+	Count    float64 `json:"_"`
+	ESum     float64 `json:"_"`
 }
 
 type RewardData struct {
-	Height    int64   `json:"blockheight"`
-	Timestamp int64   `json:"timestamp"`
-	BlockHash string  `json:"blockhash"`
-	Reward    int64   `json:"reward"`
-	Percent   float64 `json:"percent"`
-	Immature  bool    `json:"immature"`
+	Height         int64   `json:"blockheight"`
+	Timestamp      int64   `json:"timestamp"`
+	BlockHash      string  `json:"blockhash"`
+	Reward         int64   `json:"reward"`
+	Percent        float64 `json:"percent"`
+	Immature       bool    `json:"immature"`
+	Difficulty     int64   `json:"-"`
+	PersonalShares int64   `json:"-"`
+	PersonalEffort float64 `json:"personalLuck"`
 }
 
 type BlockData struct {
@@ -109,6 +115,7 @@ type BlockData struct {
 	RoundHeight    int64    `json:"-"`
 	candidateKey   string
 	immatureKey    string
+	PersonalShares int64 `json:"PersonalShares"`
 }
 
 func (b *BlockData) RewardInShannon() int64 {
@@ -129,7 +136,7 @@ func (b *BlockData) RoundKey() string {
 }
 
 func (b *BlockData) key() string {
-	return join(b.UncleHeight, b.Orphan, b.Nonce, b.serializeHash(), b.Timestamp, b.Difficulty, b.TotalShares, b.Reward, b.Login)
+	return join(b.UncleHeight, b.Orphan, b.Nonce, b.serializeHash(), b.Timestamp, b.Difficulty, b.TotalShares, b.Reward, b.Login, b.PersonalShares)
 }
 
 type Miner struct {
@@ -499,7 +506,7 @@ func (r *RedisClient) checkPoWExist(height uint64, params []string) (bool, error
 	return val == 0, err
 }
 
-func (r *RedisClient) WriteShare(login, id string, params []string, diff int64, actualDiff int64, height uint64, window time.Duration) (bool, error) {
+func (r *RedisClient) WriteShare(login, id string, params []string, diff int64, shareDiffCalc int64, height uint64, window time.Duration) (bool, error) {
 	exist, err := r.checkPoWExist(height, params)
 	if err != nil {
 		return false, err
@@ -515,14 +522,14 @@ func (r *RedisClient) WriteShare(login, id string, params []string, diff int64, 
 	ts := ms / 1000
 
 	_, err = tx.Exec(func() error {
-		r.writeShare(tx, ms, ts, login, id, diff, actualDiff, window)
+		r.writeShare(tx, ms, ts, login, id, diff, shareDiffCalc, window)
 		tx.HIncrBy(r.formatKey("stats"), "roundShares", diff)
 		return nil
 	})
 	return false, err
 }
 
-func (r *RedisClient) WriteBlock(login, id string, params []string, diff, actualDiff int64, roundDiff int64, height uint64, window time.Duration) (bool, error) {
+func (r *RedisClient) WriteBlock(login, id string, params []string, diff, shareDiffCalc int64, roundDiff int64, height uint64, window time.Duration) (bool, error) {
 	exist, err := r.checkPoWExist(height, params)
 	if err != nil {
 		return false, err
@@ -538,7 +545,7 @@ func (r *RedisClient) WriteBlock(login, id string, params []string, diff, actual
 	ts := ms / 1000
 
 	cmds, err := tx.Exec(func() error {
-		r.writeShare(tx, ms, ts, login, id, diff, actualDiff, window)
+		r.writeShare(tx, ms, ts, login, id, diff, shareDiffCalc, window)
 		tx.HSet(r.formatKey("stats"), "lastBlockFound", strconv.FormatInt(ts, 10))
 		tx.HDel(r.formatKey("stats"), "roundShares")
 		tx.HSet(r.formatKey("miners", login), "roundShares", strconv.FormatInt(0, 10))
@@ -580,14 +587,18 @@ func (r *RedisClient) WriteBlock(login, id string, params []string, diff, actual
 			n, _ := strconv.ParseInt(v, 10, 64)
 			totalShares += n
 		}
+
+		personalShares := int64(0)
+		personalShares = cmds[len(cmds)-14].(*redis.IntCmd).Val()
+
 		hashHex := strings.Join(params, ":")
-		s := join(hashHex, ts, roundDiff, totalShares, login)
+		s := join(hashHex, ts, roundDiff, totalShares, login, personalShares)
 		cmd := r.client.ZAdd(r.formatKey("blocks", "candidates"), redis.Z{Score: float64(height), Member: s})
 		return false, cmd.Err()
 	}
 }
 
-func (r *RedisClient) writeShare(tx *redis.Multi, ms, ts int64, login, id string, diff int64, actualDiff int64, expire time.Duration) {
+func (r *RedisClient) writeShare(tx *redis.Multi, ms, ts int64, login, id string, diff int64, shareDiffCalc int64, expire time.Duration) {
 
 	tx.LPush(r.formatKey("lastshares"), login)
 	tx.LTrim(r.formatKey("lastshares"), 0, r.pplns)
@@ -597,7 +608,7 @@ func (r *RedisClient) writeShare(tx *redis.Multi, ms, ts int64, login, id string
 	tx.ZAdd(r.formatKey("hashrate", login), redis.Z{Score: float64(ts), Member: join(diff, id, ms)})
 	tx.Expire(r.formatKey("hashrate", login), expire) // Will delete hashrates for miners that gone
 	tx.HSet(r.formatKey("miners", login), "lastShare", strconv.FormatInt(ts, 10))
-	tx.HSet(r.formatKey("miners", login), "lastShareDiff", strconv.FormatInt(actualDiff, 10))
+	tx.HSet(r.formatKey("miners", login), "lastShareDiff", strconv.FormatInt(shareDiffCalc, 10))
 }
 
 func (r *RedisClient) WriteBlocksFound(ms, ts int64, login, id, share string, diff int64) {
@@ -849,8 +860,8 @@ func (r *RedisClient) WriteReward(login string, amount int64, percent *big.Rat, 
 	tx := r.client.Multi()
 	defer tx.Close()
 
-	addStr := join(amount, percent, immature, block.Hash, block.Height, block.Timestamp)
-	remStr := join(amount, percent, !immature, block.Hash, block.Height, block.Timestamp)
+	addStr := join(amount, percent, immature, block.Hash, block.Height, block.Timestamp, block.Difficulty, block.PersonalShares)
+	remStr := join(amount, percent, !immature, block.Hash, block.Height, block.Timestamp, block.Difficulty, block.PersonalShares)
 	remscore := block.Timestamp - 3600*24*40 // Store the last 40 Days
 
 	_, err := tx.Exec(func() error {
@@ -1287,13 +1298,18 @@ func (r *RedisClient) CollectWorkersStats(sWindow, lWindow time.Duration, login 
 	dorew = append(dorew, &SumRewardData{Name: "Last 30 days", Interval: 3600 * 24 * 30, Offset: 0})
 
 	for _, reward := range rewards {
-
 		for _, dore := range dorew {
+			dore.Count += 0
+			dore.ESum += 0
 			dore.Reward += 0
 			dore.Blocks += 0
+			dore.Effort += 0
 			if reward.Timestamp > now-dore.Interval {
 				dore.Reward += reward.Reward
 				dore.Blocks++
+				dore.ESum += reward.PersonalEffort
+				dore.Count++
+				dore.Effort = dore.ESum / dore.Count
 			}
 		}
 	}
@@ -1418,6 +1434,7 @@ func convertCandidateResults(raw *redis.ZSliceCmd) []*BlockData {
 		block.Difficulty, _ = strconv.ParseInt(fields[4], 10, 64)
 		block.TotalShares, _ = strconv.ParseInt(fields[5], 10, 64)
 		block.Login = fields[6]
+		block.PersonalShares, _ = strconv.ParseInt(fields[7], 10, 64)
 		block.candidateKey = v.Member.(string)
 		result = append(result, &block)
 	}
@@ -1438,6 +1455,11 @@ func convertRewardResults(rows ...*redis.ZSliceCmd) []*RewardData {
 			reward.Percent, _ = strconv.ParseFloat(fields[1], 64)
 			reward.Immature, _ = strconv.ParseBool(fields[2])
 			reward.Height, _ = strconv.ParseInt(fields[4], 10, 64)
+			reward.Difficulty, _ = strconv.ParseInt(fields[5], 10, 64)
+			reward.PersonalShares, _ = strconv.ParseInt(fields[7], 10, 64)
+			Difficulty, _ := strconv.ParseFloat(fields[6], 64)
+			PersonalShares, _ := strconv.ParseFloat(fields[7], 64)
+			reward.PersonalEffort = float64(PersonalShares / Difficulty)
 			result = append(result, &reward)
 		}
 	}
@@ -1464,6 +1486,7 @@ func convertBlockResults(rows ...*redis.ZSliceCmd) []*BlockData {
 			block.RewardString = fields[7]
 			block.ImmatureReward = fields[7]
 			block.Login = fields[8]
+			block.PersonalShares, _ = strconv.ParseInt(fields[9], 10, 64)
 			block.immatureKey = v.Member.(string)
 			result = append(result, &block)
 		}

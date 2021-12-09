@@ -48,6 +48,10 @@ func ToHex(n int64) string {
 	return "0x0" + strconv.FormatInt(n, 16)
 }
 
+func ToHex1(n int64) string {
+	return strconv.FormatInt(n, 10)
+}
+
 func FormatReward(reward *big.Int) string {
 	return reward.String()
 }
@@ -79,4 +83,14 @@ func String2Big(num string) *big.Int {
 	n := new(big.Int)
 	n.SetString(num, 0)
 	return n
+}
+
+func DiffFloatToInt(diffFloat float64) (diffInt int64) {
+	diffInt = int64(diffFloat * float64(1<<48) / float64(0xffff)) // 48 = 256 - 26*8
+	return
+}
+
+func DiffIntToFloat(diffInt int64) (diffFloat float64) {
+	diffFloat = float64(diffInt*0xffff) / float64(1<<48) // 48 = 256 - 26*8
+	return
 }
